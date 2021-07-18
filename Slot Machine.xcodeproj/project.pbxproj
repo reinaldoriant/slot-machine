@@ -20,6 +20,8 @@
 		A5F2E0A126A4DB960065F471 /* spin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A5F2E09926A4DB960065F471 /* spin.mp3 */; };
 		A5F2E0A226A4DB960065F471 /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A5F2E09A26A4DB960065F471 /* win.mp3 */; };
 		A5F2E0A726A4DFCA0065F471 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F2E0A626A4DFCA0065F471 /* Launch Screen.storyboard */; };
+		A5F2E0A926A4E41B0065F471 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2E0A826A4E41B0065F471 /* LogoView.swift */; };
+		A5F2E0AB26A4E4520065F471 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2E0AA26A4E4520065F471 /* Modifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		A5F2E09926A4DB960065F471 /* spin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spin.mp3; sourceTree = "<group>"; };
 		A5F2E09A26A4DB960065F471 /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
 		A5F2E0A626A4DFCA0065F471 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		A5F2E0A826A4E41B0065F471 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
+		A5F2E0AA26A4E4520065F471 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				A5F2E08626A4D87A0065F471 /* ContentView.swift */,
+				A5F2E0A826A4E41B0065F471 /* LogoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 		A5F2E0A526A4DBBB0065F471 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A5F2E0AA26A4E4520065F471 /* Modifier.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -199,7 +205,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F2E0AB26A4E4520065F471 /* Modifier.swift in Sources */,
 				A5F2E08726A4D87A0065F471 /* ContentView.swift in Sources */,
+				A5F2E0A926A4E41B0065F471 /* LogoView.swift in Sources */,
 				A5F2E08526A4D87A0065F471 /* Slot_MachineApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
