@@ -20,8 +20,32 @@ struct ContentView: View {
                 LogoView()
                 Spacer()
                 //MARK : - Score
+                HStack {
+                    HStack{
+                        Text("Your\nCoins".uppercased())
+                            .scoreLabelStyle()
+                            .multilineTextAlignment(.trailing)
+                        
+                        Text("100")
+                            .scoreNumberStyle()
+                            .modifier(ScoreNumberModifier())
+                    }
+                    .modifier(ScoreContainerModifier())
+                    Spacer()
+                    HStack{
+                        Text("200")
+                            .scoreNumberStyle()
+                            .modifier(ScoreNumberModifier())
+                        
+                        Text("High\nScore".uppercased())
+                            .scoreLabelStyle()
+                            .multilineTextAlignment(.leading)
+                    }
+                    .modifier(ScoreContainerModifier())
+                }
                 //MARK : - Slot Machine
                 //MARK : - Footer
+                Spacer()
             }
             //MARK : - Buttons
             .overlay(

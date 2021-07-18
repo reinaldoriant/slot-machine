@@ -22,6 +22,7 @@
 		A5F2E0A726A4DFCA0065F471 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F2E0A626A4DFCA0065F471 /* Launch Screen.storyboard */; };
 		A5F2E0A926A4E41B0065F471 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2E0A826A4E41B0065F471 /* LogoView.swift */; };
 		A5F2E0AB26A4E4520065F471 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2E0AA26A4E4520065F471 /* Modifier.swift */; };
+		A5F2E0AD26A4E85D0065F471 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2E0AC26A4E85D0065F471 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		A5F2E0A626A4DFCA0065F471 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A5F2E0A826A4E41B0065F471 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		A5F2E0AA26A4E4520065F471 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
+		A5F2E0AC26A4E85D0065F471 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				A5F2E0AA26A4E4520065F471 /* Modifier.swift */,
+				A5F2E0AC26A4E85D0065F471 /* Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F2E0AD26A4E85D0065F471 /* Extensions.swift in Sources */,
 				A5F2E0AB26A4E4520065F471 /* Modifier.swift in Sources */,
 				A5F2E08726A4D87A0065F471 /* ContentView.swift in Sources */,
 				A5F2E0A926A4E41B0065F471 /* LogoView.swift in Sources */,
