@@ -86,7 +86,7 @@ struct ContentView: View {
                 .layoutPriority(2)
                 //MARK : - Footer
                 Spacer()
-                HStack{
+                HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 10){
                     //MARK : - Bet 20
                     Button(action: {
                         print("Bet 20 coins")
@@ -94,16 +94,14 @@ struct ContentView: View {
                         Text("20")
                             .fontWeight(.heavy)
                             .foregroundColor(Color.white)
-                            .font(.system(.title, design: .rounded))
-                            .padding(.vertical, 5)
-                            .frame(width: 90)
-                            .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 3)
+                            .modifier(BetNumberModifier())
                     }
-                    .background(Capsule()
-                                    .fill(LinearGradient(gradient: Gradient(colors: [Color("ColorPink"),Color("ColorPurple")]), startPoint: .top, endPoint: .bottom)))
-                    .padding(3)
-                    .background(Capsule()
-                                    .fill(LinearGradient(gradient: Gradient(colors: [Color("ColorPink"),Color("ColorPurple")]), startPoint: .bottom, endPoint: .top)))
+                    .modifier(BetCapsulModifier())
+                    
+                    Image("gfx-casino-chips")
+                        .resizable()
+                        .opacity(1)
+                        .modifier(CasinoChipsModifier())
                 }
                 
             }
