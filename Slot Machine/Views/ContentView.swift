@@ -220,6 +220,64 @@ struct ContentView: View {
             )
             .padding()
             .frame(maxWidth: 720)
+            .blur(radius: $showingModal.wrappedValue ? 5 : 0, opaque:  false)
+            
+            // MARK : - POPUP
+            if $showingModal.wrappedValue{
+                ZStack{
+                    Color("ColorTransparentBlack").edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                    
+                    //Modal
+                    VStack(spacing: 0){
+                        Text("Game Over")
+                            .font(.system(.title, design: .rounded))
+                            .fontWeight(.heavy)
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .background(Color("ColorPink"))
+                            .foregroundColor(Color.white)
+                        
+                        Spacer()
+                        
+                        VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 16){
+                            Image("gfx-seven-reel")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 72)
+                            
+                            Text("Bad luck! You lost all of the coins. \nLet's play again!")
+                                .font(.system(.body,design: .rounded))
+                                .lineLimit(2)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(Color.gray)
+                                .layoutPriority(1)
+                            
+                            Button(action: {
+                                self.showingModal = false;self.coins = 100
+                            }){
+                                Text("New Game".uppercased())
+                                    .font(.system(.body, design: .rounded))
+                                    .fontWeight(.semibold)
+                                    .accentColor(Color("ColorPink"))
+                                    .padding(.horizontal,12)
+                                    .padding(.vertical,8)
+                                    .frame(minWidth: 128)
+                                    .background(Capsule()
+                                                    .strokeBorder(lineWidth: 1.75)
+                                                    .accentColor(Color("ColorPink"))
+                                    )
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                    }.frame(minWidth: 280, idealWidth: 280, maxWidth: 320, minHeight: 260, idealHeight: 280, maxHeight: 320, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .shadow(color: Color("ColorTransparentBlack"), radius: 6, x: 0, y: 8)
+                    
+                }
+            }
         }
         .sheet(isPresented: $showingInfoView){
             InfoView()
