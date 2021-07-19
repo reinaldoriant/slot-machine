@@ -44,6 +44,8 @@ struct ContentView: View {
                     .modifier(ScoreContainerModifier())
                 }
                 //MARK : - Slot Machine
+                
+                
                 //MARK : - Footer
                 Spacer()
             }
