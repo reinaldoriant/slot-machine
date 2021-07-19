@@ -28,6 +28,17 @@ struct InfoView: View {
             }
             .font(.system(.body, design: .rounded))
         }
+        .padding(.top, 40)
+        .overlay(Button(action: {
+            
+        }) {
+            Image(systemName: "xmark.circle")
+                .font(.title)
+        }
+        .padding(.top,30)
+        .padding(.trailing,20)
+        .accentColor(Color.secondary), alignment: .topTrailing
+        )
     }
 }
 
