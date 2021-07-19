@@ -16,6 +16,9 @@ struct ContentView: View {
     
     @State private var reels: Array = [0,1,2]
     @State private var showingInfoView: Bool = false
+    @State private var isActivateBet10: Bool = false
+    @State private var isActivateBet20: Bool = false
+    @State private var showingModal: Bool = false
     
     // MARK: - FUNCTIONS
     func spinReels(){
@@ -42,7 +45,7 @@ struct ContentView: View {
     //check the winning
     
     func playerWins(){
-        coins += betAmount*10
+        coins += betAmount * 10
     }
     
     //player wins
@@ -55,7 +58,25 @@ struct ContentView: View {
     func playerLoses(){
         coins -= betAmount
     }
+    
+    func activeBet20() {
+        betAmount = 20
+        isActivateBet20 = true
+        isActivateBet10 = false
+    }
+    
+    func activeBet10() {
+        betAmount = 10
+        isActivateBet10 = true
+        isActivateBet20 = false
+    }
     //player loses
+    
+    func isGameOver(){
+        if coins <= 0 {
+            showingModal = true
+        }
+    }
     // game is over
     
     // MARK : - Body
@@ -129,6 +150,8 @@ struct ContentView: View {
                         self.spinReels()
                         
                         self.checkWinning()
+                        
+                        self.isGameOver()
                     }){
                         Image("gfx-spin")
                             .renderingMode(.original)
@@ -142,32 +165,34 @@ struct ContentView: View {
                 HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 10){
                     //MARK : - Bet 20
                     Button(action: {
-                        print("Bet 20 coins")
+                        self.activeBet20()
                     }) {
                         Text("20")
                             .fontWeight(.heavy)
-                            .foregroundColor(Color.white)
+                            .foregroundColor(isActivateBet20 ? Color("ColorYellow") : Color.white)
                             .modifier(BetNumberModifier())
                     }
                     .modifier(BetCapsulModifier())
                     
                     Image("gfx-casino-chips")
                         .resizable()
-                        .opacity(0)
+                        .offset(x: isActivateBet20 ? 0 : 20)
+                        .opacity(isActivateBet20 ? 1 : 0)
                         .modifier(CasinoChipsModifier())
-                    
+                    Spacer()
                     //MARK : - Bet 10
                     Image("gfx-casino-chips")
                         .resizable()
-                        .opacity(1)
+                        .offset(x: isActivateBet10 ? 0 : -20)
+                        .opacity(isActivateBet10 ? 1 : 0)
                         .modifier(CasinoChipsModifier())
                     
                     Button(action: {
-                        print("Bet 10 coins")
+                        self.activeBet10()
                     }) {
                         Text("10")
                             .fontWeight(.heavy)
-                            .foregroundColor(Color.yellow)
+                            .foregroundColor(isActivateBet10 ? Color("ColorYellow") : Color.white)
                             .modifier(BetNumberModifier())
                     }
                     .modifier(BetCapsulModifier())
