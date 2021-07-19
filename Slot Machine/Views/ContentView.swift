@@ -100,8 +100,26 @@ struct ContentView: View {
                     
                     Image("gfx-casino-chips")
                         .resizable()
+                        .opacity(0)
+                        .modifier(CasinoChipsModifier())
+                    
+                    //MARK : - Bet 10
+                    Image("gfx-casino-chips")
+                        .resizable()
                         .opacity(1)
                         .modifier(CasinoChipsModifier())
+                    
+                    Button(action: {
+                        print("Bet 10 coins")
+                    }) {
+                        Text("10")
+                            .fontWeight(.heavy)
+                            .foregroundColor(Color.yellow)
+                            .modifier(BetNumberModifier())
+                    }
+                    .modifier(BetCapsulModifier())
+                    
+                    
                 }
                 
             }
