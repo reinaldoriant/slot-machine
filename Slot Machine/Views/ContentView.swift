@@ -11,6 +11,8 @@ struct ContentView: View {
  
     let symbols = ["gfx-bell","gfx-cherry","gfx-coin","gfx-grape","gfx-seven","gfx-strawberry"]
     
+    let heptics = UINotificationFeedbackGenerator()
+    
     @State private var highscore: Int = UserDefaults.standard.integer(forKey: "HighScore")
     @State private var coins: Int = 100
     @State private var betAmount: Int = 10
@@ -31,6 +33,8 @@ struct ContentView: View {
         reels = reels.map({ _ in
             Int.random(in: 0...symbols.count - 1)
         })
+        playSound(sound: "spin", type: "mp3")
+        heptics.notificationOccurred(.success)
     }
     //spin the reels
     
@@ -38,6 +42,9 @@ struct ContentView: View {
         if reels[0] == reels[1] && reels[1] == reels[2] && reels[0] == reels[2]{
             if coins>highscore{
                 newHighScore()
+            }
+            else{
+                playSound(sound: "win", type: "mp3")
             }
         }
         else
@@ -56,6 +63,7 @@ struct ContentView: View {
     func newHighScore() {
         highscore = coins
         UserDefaults.standard.set(highscore, forKey: "HighScore")
+        playSound(sound: "high-score", type: "mp3")
     }
 
     //new highscore
@@ -67,18 +75,23 @@ struct ContentView: View {
         betAmount = 20
         isActivateBet20 = true
         isActivateBet10 = false
+        playSound(sound: "casino-chips", type: "mp3")
+        heptics.notificationOccurred(.success)
     }
     
     func activeBet10() {
         betAmount = 10
         isActivateBet10 = true
         isActivateBet20 = false
+        playSound(sound: "casino-chips", type: "mp3")
+        heptics.notificationOccurred(.success)
     }
     //player loses
     
     func isGameOver(){
         if coins <= 0 {
             showingModal = true
+            playSound(sound: "game-over", type: "mp3")
         }
     }
     // game is over
@@ -88,6 +101,7 @@ struct ContentView: View {
         highscore = 0
         coins = 100
         activeBet10()
+        playSound(sound: "chimeup", type: "mp3")
     }
     // MARK: - Body
     var body: some View {
@@ -139,6 +153,7 @@ struct ContentView: View {
                             .animation(.easeOut(duration: Double.random(in: 0.5...0.7)))
                             .onAppear(perform: {
                                 self.animatingSymbol.toggle()
+                                playSound(sound: "riseup", type: "mp3")
                             })
                     }
                     

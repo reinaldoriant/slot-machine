@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A567260326A6B53000FBAD9A /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = A567260226A6B53000FBAD9A /* PlaySound.swift */; };
 		A5B8BF5A26A542FD007121E3 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8BF5926A542FD007121E3 /* InfoView.swift */; };
 		A5F2E08526A4D87A0065F471 /* Slot_MachineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2E08426A4D87A0065F471 /* Slot_MachineApp.swift */; };
 		A5F2E08726A4D87A0065F471 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2E08626A4D87A0065F471 /* ContentView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A567260226A6B53000FBAD9A /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 		A5B8BF5926A542FD007121E3 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		A5F2E08126A4D87A0065F471 /* Slot Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slot Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F2E08426A4D87A0065F471 /* Slot_MachineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slot_MachineApp.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				A5F2E0AA26A4E4520065F471 /* Modifier.swift */,
 				A5F2E0AC26A4E85D0065F471 /* Extensions.swift */,
+				A567260226A6B53000FBAD9A /* PlaySound.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5F2E0AF26A51E140065F471 /* ReelView.swift in Sources */,
+				A567260326A6B53000FBAD9A /* PlaySound.swift in Sources */,
 				A5F2E0AD26A4E85D0065F471 /* Extensions.swift in Sources */,
 				A5F2E0AB26A4E4520065F471 /* Modifier.swift in Sources */,
 				A5F2E08726A4D87A0065F471 /* ContentView.swift in Sources */,
