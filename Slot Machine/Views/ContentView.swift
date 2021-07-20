@@ -20,6 +20,8 @@ struct ContentView: View {
     @State private var isActivateBet10: Bool = false
     @State private var isActivateBet20: Bool = false
     @State private var showingModal: Bool = false
+    @State private var animatingSymbol: Bool = false
+    @State private var animatingModal: Bool = false
     
     // MARK: - FUNCTIONS
     func spinReels(){
@@ -81,19 +83,25 @@ struct ContentView: View {
     }
     // game is over
     
-    // MARK : - Body
+    func resetGame(){
+        UserDefaults.standard.set(0, forKey: "HighScore")
+        highscore = 0
+        coins = 100
+        activeBet10()
+    }
+    // MARK: - Body
     var body: some View {
         ZStack {
             //MARK : - Background
             LinearGradient(gradient: Gradient(colors: [Color("ColorPink"), Color("ColorPurple")]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-            //MARK : - Interface
+            //MARK: - Interface
             VStack (alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 5){
                 
-                //MARK : - Header
+                //MARK: - Header
                 LogoView()
                 Spacer()
-                //MARK : - Score
+                //MARK: - Score
                 HStack {
                     HStack{
                         Text("Your\nCoins".uppercased())
@@ -117,42 +125,73 @@ struct ContentView: View {
                     }
                     .modifier(ScoreContainerModifier())
                 }
-                // MARK : - Slot Machine
+                // MARK: - Slot Machine
                 
                 VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 0){
-                    //MARK : - Reel#1
+                    //MARK: - Reel#1
                     ZStack {
                         ReelView()
                         Image(symbols[reels[0]])
                             .resizable()
                             .modifier(ImageModifier())
+                            .opacity(animatingSymbol ? 1 : 0)
+                            .offset(y: animatingSymbol ? 0 : -50)
+                            .animation(.easeOut(duration: Double.random(in: 0.5...0.7)))
+                            .onAppear(perform: {
+                                self.animatingSymbol.toggle()
+                            })
                     }
                     
-                    //MARK : - Reel#2
+                    //MARK: - Reel#2
                     HStack(alignment: .center, spacing: 0){
                         ZStack {
                             ReelView()
                             Image(symbols[reels[1]])
                                 .resizable()
                                 .modifier(ImageModifier())
+                                .opacity(animatingSymbol ? 1 : 0)
+                                .offset(y: animatingSymbol ? 0 : -50)
+                                .animation(.easeOut(duration: Double.random(in: 0.5...0.7)))
+                                .animation(.easeOut)
+                                .onAppear(perform: {
+                                    self.animatingSymbol.toggle()
+                                })
                         }
                         Spacer()
-                        //MARK : - Reel#3
+                        //MARK: - Reel#3
                         ZStack {
                             ReelView()
                             Image(symbols[reels[2]])
                                 .resizable()
                                 .modifier(ImageModifier())
+                                .opacity(animatingSymbol ? 1 : 0)
+                                .offset(y: animatingSymbol ? 0 : -50)
+                                .animation(.easeOut(duration: Double.random(in: 0.5...0.7)))
+                                .onAppear(perform: {
+                                    self.animatingSymbol.toggle()
+                                })
                         }
                     }
                     .frame(maxWidth: 500)
                    
-                    //MARK : - SPIN BUTTON
+                    //MARK: - SPIN BUTTON
                     Button(action: {
+                        //1. set default state
+                        withAnimation{
+                            self.animatingSymbol = false
+                        }
+                        //2. spin the reels
                         self.spinReels()
                         
+                        //3. trigger the animation
+                        withAnimation{
+                            self.animatingSymbol = true
+                        }
+                        
+                        //4. check winning
                         self.checkWinning()
                         
+                        //5. Game over
                         self.isGameOver()
                     }){
                         Image("gfx-spin")
@@ -162,10 +201,10 @@ struct ContentView: View {
                     }
                 }
                 .layoutPriority(2)
-                //MARK : - Footer
+                //MARK: - Footer
                 Spacer()
                 HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 10){
-                    //MARK : - Bet 20
+                    //MARK: - Bet 20
                     Button(action: {
                         self.activeBet20()
                     }) {
@@ -182,7 +221,7 @@ struct ContentView: View {
                         .opacity(isActivateBet20 ? 1 : 0)
                         .modifier(CasinoChipsModifier())
                     Spacer()
-                    //MARK : - Bet 10
+                    //MARK: - Bet 10
                     Image("gfx-casino-chips")
                         .resizable()
                         .offset(x: isActivateBet10 ? 0 : -20)
@@ -203,10 +242,10 @@ struct ContentView: View {
                 }
                 
             }
-            //MARK : - Buttons
+            //MARK: - Buttons
             .overlay(
                 Button(action: {
-                    print("Reset the game")
+                    self.resetGame()
                 }) {
                     Image(systemName: "arrow.2.circlepath.circle")
                 }
@@ -224,7 +263,7 @@ struct ContentView: View {
             .frame(maxWidth: 720)
             .blur(radius: $showingModal.wrappedValue ? 5 : 0, opaque:  false)
             
-            // MARK : - POPUP
+            // MARK: - POPUP
             if $showingModal.wrappedValue{
                 ZStack{
                     Color("ColorTransparentBlack").edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
@@ -256,6 +295,8 @@ struct ContentView: View {
                             
                             Button(action: {
                                 self.showingModal = false;self.coins = 100
+                                self.activeBet10()
+                                self.coins = 100
                             }){
                                 Text("New Game".uppercased())
                                     .font(.system(.body, design: .rounded))
@@ -277,6 +318,12 @@ struct ContentView: View {
                     .background(Color.white)
                     .cornerRadius(20)
                     .shadow(color: Color("ColorTransparentBlack"), radius: 6, x: 0, y: 8)
+                    .opacity($animatingModal.wrappedValue ? 1 : 0)
+                    .offset(y: $animatingModal.wrappedValue ? 0 : -100)
+                    .animation(Animation.spring(response: 0.6, dampingFraction: 1.0,blendDuration: 1.0))
+                    .onAppear(perform: {
+                        self.animatingModal = true
+                    })
                     
                 }
             }
